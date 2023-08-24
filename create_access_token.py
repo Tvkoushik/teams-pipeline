@@ -1,11 +1,11 @@
 import requests
 
 # Your Azure AD tenant ID
-tenant_id = 'de4d316d-888b-4234-ae27-31c8fd9e1c03'
+tenant_id = '<>'
 
 # Your app's client ID and secret
-client_id = 'a292e31b-1db8-4b4e-9420-c854b7dea9cd'
-client_secret = 'fo28Q~IvhCwvK.GjwOonXsMc1c4.8TZSPROAGdxz'
+client_id = '<>'
+client_secret = '<>'
 
 # The OAuth2 token endpoint
 token_url = f'https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/token'
