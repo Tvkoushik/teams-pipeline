@@ -151,9 +151,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
         # Fetch the call record details
         access_token = get_access_token(
-            "a292e31b-1db8-4b4e-9420-c854b7dea9cd",
-            "fo28Q~IvhCwvK.GjwOonXsMc1c4.8TZSPROAGdxz",
-            "de4d316d-888b-4234-ae27-31c8fd9e1c03",
+            "<TENANT_ID>",
+            "<CLIENT_SECRET_ID>",
+            "<CLINET_SECRET_KEY>",
         )
         headers = {"Authorization": "Bearer " + access_token}
         response = requests.get(
@@ -178,11 +178,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         call_session_flat = flatten_call_sessions(sessions)
 
         # Database connection parameters
-        server = "cctestdb.database.windows.net,1433"
-        database = "teams-data-db"
+        server = "<>"
+        database = "<>"
         driver = "{ODBC Driver 18 for SQL Server}"
-        username = "ccadmin"
-        password = "fOOLS098&!"
+        username = "<>"
+        password = "<>"
 
         # Create the connection string
         connection_string = (
