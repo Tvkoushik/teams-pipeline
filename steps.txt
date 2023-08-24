@@ -1,0 +1,9 @@
+After you have the "When an HTTP request is received" trigger, add a "Compose" action from the "Data Operations" actions.
+
+In the "Inputs" of the "Compose" action, use the expression @contains(triggerOutputs()?['queries'], 'validationToken'). This expression checks if the validationToken is present in the incoming request.
+
+Then, add a "Condition" control. For the condition, choose the output of the "Compose" action, and check if it equals true.
+
+If the condition is true, this means the validationToken is present. Then, you should respond with a 200 OK response where the body is the validationToken. Add a "Response" action in the "If true" part of the condition. Set the Status Code to 200, and for the Body, use the expression @triggerOutputs()?['queries']['validationToken'].
+
+In the "If false" part of the condition, you can handle actual notifications about new call records. For now, you can leave this part empty or just add a placeholder action.

@@ -1,0 +1,29 @@
+import requests
+import json
+
+# Your access token from Azure AD
+access_token = 'eyJ0eXAiOiJKV1QiLCJub25jZSI6InhTQ25ETVcxT0xQTG1pVnhhaTZweXlNU2F0Q0xRTWlJT2lNZjZDSlZkRzQiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJodHRwczovL2dyYXBoLm1pY3Jvc29mdC5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9kZTRkMzE2ZC04ODhiLTQyMzQtYWUyNy0zMWM4ZmQ5ZTFjMDMvIiwiaWF0IjoxNjkwODEwNTA0LCJuYmYiOjE2OTA4MTA1MDQsImV4cCI6MTY5MDgxNDQwNCwiYWlvIjoiRTJGZ1lIaDl0ZTJSbTNXemlabk1Wc2FjQjBIQ0FBPT0iLCJhcHBfZGlzcGxheW5hbWUiOiJDbG9iYmFSZXBvcnRpbmciLCJhcHBpZCI6ImEyOTJlMzFiLTFkYjgtNGI0ZS05NDIwLWM4NTRiN2RlYTljZCIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2RlNGQzMTZkLTg4OGItNDIzNC1hZTI3LTMxYzhmZDllMWMwMy8iLCJpZHR5cCI6ImFwcCIsIm9pZCI6IjE4NzYxZWZiLTE0NmYtNDhhNi05YzM3LTYzNWI2MjI3YTFlZSIsInJoIjoiMC5BUjhBYlRGTjNvdUlORUt1SnpISV9aNGNBd01BQUFBQUFBQUF3QUFBQUFBQUFBQ0ZBQUEuIiwicm9sZXMiOlsiQ2FsbFJlY29yZHMuUmVhZC5BbGwiLCJVc2VyLlJlYWQuQWxsIiwiQ2FsbHMuSm9pbkdyb3VwQ2FsbC5BbGwiLCJDYWxscy5Jbml0aWF0ZUdyb3VwQ2FsbC5BbGwiLCJDYWxscy5Kb2luR3JvdXBDYWxsQXNHdWVzdC5BbGwiLCJDYWxsUmVjb3JkLVBzdG5DYWxscy5SZWFkLkFsbCIsIkNhbGxzLkFjY2Vzc01lZGlhLkFsbCIsIkNhbGxzLkluaXRpYXRlLkFsbCJdLCJzdWIiOiIxODc2MWVmYi0xNDZmLTQ4YTYtOWMzNy02MzViNjIyN2ExZWUiLCJ0ZW5hbnRfcmVnaW9uX3Njb3BlIjoiRVUiLCJ0aWQiOiJkZTRkMzE2ZC04ODhiLTQyMzQtYWUyNy0zMWM4ZmQ5ZTFjMDMiLCJ1dGkiOiJIbGVZQVJSeFFFSzJFSlBvNERzTUFBIiwidmVyIjoiMS4wIiwid2lkcyI6WyIwOTk3YTFkMC0wZDFkLTRhY2ItYjQwOC1kNWNhNzMxMjFlOTAiXSwieG1zX3RjZHQiOjEzNzAzNzIxNjN9.sSuwRWLqwTUFkNU-7xQ75jNT-hv59PwQVUVj48G8VLJeOSAqVhVuBR3xce-hVNLDL-7XMs9whzCexnXSNmG2H9olBWamtZp31LrmbkLZfrP5ACdWjIPiAdrlJPicnR6VWAy3BgwGmvwNKILnNm0RmdY-SFW5MljwqEuHYN1m0EzD_0UIpUCOUFzEVmD5nqBEETOlsn2VnsLq7X1kPuF5G6zXehyLYDPimy90UZ8p_6haF1qipi1Qlpi6s_gpp1CVrHgkJWld4SW9ZlfFdm27_eirs3Ua8DgAlvb8fIOfXg8fUGEwHZfFiL7AEKuniuGtWb0lAYs1Ukt1GtBRWSlBdA'
+
+# The headers for the request
+headers = {
+    'Authorization': 'Bearer ' + access_token,
+    'Content-Type': 'application/json'
+}
+
+# The endpoint URL
+url = 'https://graph.microsoft.com/v1.0/subscriptions'
+
+# The subscription details
+subscription_data = {
+    "changeType": "created",
+    "notificationUrl": "https://prod-09.ukwest.logic.azure.com:443/workflows/168796e083dd43b792958f64ac743ab3/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4luzHkvgVz5w3J1GVJoW16dH6-soZBlCE7GlB1Ks6Ng",
+    "resource": "/communications/callRecords",
+    "expirationDateTime": "2023-08-02T00:00:00.0000000Z",  # Use a valid date within the next 3 days
+    "clientState": "sample"  # Use a secret value known to your application
+}
+
+# Send the request
+response = requests.post(url, headers=headers, data=json.dumps(subscription_data))
+
+# Print the response
+print(response.json())
