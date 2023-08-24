@@ -118,7 +118,7 @@ def flatten_call_sessions(call_sessions):
 call_record_id = data['value'][0]['resourceData']['id']
 
 # Fetch the call record details
-access_token = get_access_token('a292e31b-1db8-4b4e-9420-c854b7dea9cd', 'fo28Q~IvhCwvK.GjwOonXsMc1c4.8TZSPROAGdxz', 'de4d316d-888b-4234-ae27-31c8fd9e1c03')
+access_token = get_access_token('<>', '<>', '<>')
 headers = {'Authorization': 'Bearer ' + access_token}
 response = requests.get('https://graph.microsoft.com/v1.0/communications/callRecords/' + call_record_id, headers=headers)
 call_record = response.json()
